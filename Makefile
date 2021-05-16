@@ -1,4 +1,3 @@
-
 CC = gcc
 CFLAGS += -g -Wall -Werror -Wextra -pedantic -DDEBUG
 LIBS +=
@@ -6,6 +5,7 @@ ODIR = obj
 
 TARGET = life
 DIST = dist.tar.gz
+DOC = doc
 
 DEPS =
 
@@ -23,8 +23,11 @@ $(TARGET): $(_OBJ)
 	@mkdir -p obj
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
-dist: $(TARGET)
-	tar -czvf $(DIST) $(TARGET)
+dist: $(TARGET) $(DOC)
+	tar -czf $(DIST) $(TARGET) $(DOC)
+
+doc:
+	doxygen
 
 clean:
-	rm -f $(TARGET) $(_OBJ) $(DIST)
+	rm -rf $(TARGET) $(_OBJ) $(DIST) $(DOC)
