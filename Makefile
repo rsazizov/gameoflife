@@ -7,9 +7,9 @@ TARGET = life
 DIST = dist.tar.gz
 DOC = doc
 
-DEPS =
+DEPS = ansi.h
 
-OBJ = life.o
+OBJ = life.o ansi.o
 
 _OBJ = $(patsubst %,$(ODIR)/%,$(OBJ))
 
