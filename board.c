@@ -36,3 +36,16 @@ void Board_free(Board *board)
     free(board->grid);
     free(board);
 }
+
+void Board_gen_random(Board *board)
+{
+    srand(time(NULL));
+
+    for (int i = 0; i < board->height; i++)
+    {
+        for (int j = 0; j < board->width; j++)
+        {
+            board->grid[i][j] = rand() & 1;
+        }
+    }
+}
