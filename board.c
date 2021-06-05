@@ -25,3 +25,14 @@ Board *Board_create(int width, int height)
 
     return board;
 }
+
+void Board_free(Board *board)
+{
+    for (int i = 0; i < board->height; i++)
+    {
+        free(board->grid[i]);
+    }
+
+    free(board->grid);
+    free(board);
+}
