@@ -49,3 +49,30 @@ void Board_gen_random(Board *board)
         }
     }
 }
+
+int count_alive_neighbours(Board *board, int i, int j)
+{
+    int n_alive = 0;
+
+    static int neighbours[8][2] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, 0}, {1, -1}, {1, 1}};
+
+    for (int k = 0; k < 8; ++k)
+    {
+        const int *idx = neighbours[k];
+
+        int x = i + idx[0];
+        int y = j + idx[1];
+
+        if (x < 0 || y < 0 || x >= board->height || y >= board->width)
+        {
+            continue;
+        }
+
+        if (board->grid[x][y])
+        {
+            n_alive++;
+        }
+    }
+
+    return n_alive;
+}
