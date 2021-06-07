@@ -76,3 +76,31 @@ int count_alive_neighbours(Board *board, int i, int j)
 
     return n_alive;
 }
+
+Board *Board_make_life(Board *board)
+{
+    Board *next_gen = Board_create(board->width, board->height);
+
+    for (int i = 0; i < board->height; i++)
+    {
+        for (int j = 0; j < board->width; j++)
+        {
+            int n_alive = count_alive_neighbours(board, i, j);
+
+            if (n_alive == 3)
+            {
+                next_gen->grid[i][j] = true;
+            }
+            else if (n_alive == 2 && board->grid[i][j])
+            {
+                next_gen->grid[i][j] = true;
+            }
+            else
+            {
+                next_gen->grid[i][j] = false;
+            }
+        }
+    }
+
+    return next_gen;
+}
