@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/rsazizov/git/gameoflife/liblife/board.c
+board.h
+/home/rsazizov/git/gameoflife/liblife/board.h
+string.h
+-
+
+/home/rsazizov/git/gameoflife/liblife/board.h
+stdbool.h
+-
+stdio.h
+-
+stdlib.h
+-
+time.h
+-
+

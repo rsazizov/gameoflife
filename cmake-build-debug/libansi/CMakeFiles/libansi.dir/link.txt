@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblibansi.a CMakeFiles/libansi.dir/ansi.c.o
+/usr/bin/ranlib liblibansi.a

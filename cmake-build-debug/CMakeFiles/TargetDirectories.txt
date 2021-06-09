@@ -1,0 +1,9 @@
+/home/rsazizov/git/gameoflife/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/rsazizov/git/gameoflife/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/rsazizov/git/gameoflife/cmake-build-debug/CMakeFiles/life.dir
+/home/rsazizov/git/gameoflife/cmake-build-debug/libansi/CMakeFiles/rebuild_cache.dir
+/home/rsazizov/git/gameoflife/cmake-build-debug/libansi/CMakeFiles/edit_cache.dir
+/home/rsazizov/git/gameoflife/cmake-build-debug/libansi/CMakeFiles/libansi.dir
+/home/rsazizov/git/gameoflife/cmake-build-debug/liblife/CMakeFiles/rebuild_cache.dir
+/home/rsazizov/git/gameoflife/cmake-build-debug/liblife/CMakeFiles/edit_cache.dir
+/home/rsazizov/git/gameoflife/cmake-build-debug/liblife/CMakeFiles/liblife.dir

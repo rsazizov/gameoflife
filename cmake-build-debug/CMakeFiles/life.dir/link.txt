@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/life.dir/life.c.o -o life  libansi/liblibansi.a liblife/libliblife.a 
