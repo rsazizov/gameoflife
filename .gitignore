@@ -3,6 +3,7 @@ life
 dist.tar.gz
 doc/
 
+cmake-build-debug
 .idea
 
 # Prerequisites
