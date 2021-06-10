@@ -1,11 +1,29 @@
 #include "libansi/ansi.h"
 #include "liblife/board.h"
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
 
-int main() {
+void usage_and_die() {
+  printf("Usage: life <clip|circular>\n");
+  exit(1);
+}
+
+int main(int argc, char** argv) {
+  if (argc != 2) {
+    usage_and_die();
+  }
+
+  const char* variant = argv[1];
+
+  if (strcmp(variant, "clip") && strcmp(variant, "circular")) {
+    usage_and_die();
+  }
+
+  bool clip = strcmp(variant, "clip") != 0;
+
   Board *board = Board_create(10, 10);
 
   Board_gen_random(board);
@@ -30,7 +48,7 @@ int main() {
     }
 
     Board *tmp = board;
-    board = Board_make_life(board);
+    board = Board_make_life(board, clip);
     Board_free(tmp);
     fflush(stdout);
 
