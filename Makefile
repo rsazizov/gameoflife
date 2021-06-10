@@ -24,7 +24,7 @@ $(TARGET): $(_OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 dist: $(TARGET) $(DOC)
-	tar -czf $(DIST) $(TARGET) $(DOC)
+	tar -czf $(DIST) $(TARGET) $(DOC) *.h *.c
 
 doc:
 	doxygen
