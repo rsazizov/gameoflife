@@ -8,9 +8,9 @@
  *
  */
 typedef struct board {
-  int height;  /**< Height of the board (in cells) */
-  int width;   /**< Width of the board (in cells) */
-  bool **grid; /**< The grid itself (pointers to pointesr */
+    int height;  /**< Height of the board (in cells) */
+    int width;   /**< Width of the board (in cells) */
+    bool **grid; /**< The grid itself (pointers to pointers */
 } Board;
 
 /**
@@ -48,9 +48,11 @@ void Board_gen_random(Board *board);
  * @param board Board to use
  * @param i Row of the cell to be counted
  * @param j Column of the cell to be counted
+ * @param clip Clip the board when calculating alive neighbours
+ * @return Number of alive neighbours
  *
  */
-int Board_count_alive_neighbours(Board *board, int i, int j);
+int Board_count_alive_neighbours(Board *board, int i, int j, bool clip);
 
 /**
  *
@@ -59,7 +61,8 @@ int Board_count_alive_neighbours(Board *board, int i, int j);
  * Input board is not modified
  *
  * @param board Board to use
+ * @param clip Clip the board when calculating alive neighbours
  * @return A new board that is the result of applying the rules to the board
  *
  */
-Board *Board_make_life(Board *board);
+Board *Board_make_life(Board *board, bool clip);

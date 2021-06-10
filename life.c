@@ -30,7 +30,7 @@ int main() {
     }
 
     Board *tmp = board;
-    board = Board_make_life(board);
+    board = Board_make_life(board, false);
     Board_free(tmp);
     fflush(stdout);
 
