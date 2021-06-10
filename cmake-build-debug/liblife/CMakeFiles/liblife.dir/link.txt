@@ -1,2 +1,0 @@
-/usr/bin/ar qc libliblife.a CMakeFiles/liblife.dir/board.c.o
-/usr/bin/ranlib libliblife.a

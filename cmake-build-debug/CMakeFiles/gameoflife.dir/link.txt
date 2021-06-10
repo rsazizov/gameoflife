@@ -1,1 +1,0 @@
-/usr/bin/cc -g CMakeFiles/gameoflife.dir/libansi/ansi.c.o CMakeFiles/gameoflife.dir/liblife/board.c.o CMakeFiles/gameoflife.dir/life.c.o -o gameoflife 
