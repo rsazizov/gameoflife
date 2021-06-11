@@ -16,7 +16,7 @@ add_subdirectory(tests)
 
 add_executable(life life.c life.h)
 
-target_link_libraries(life libui liblife SDL2::SDL2)
+target_link_libraries(life libui liblife SDL2)
 target_include_directories(life PUBLIC ${CMAKE_SOURCE_DIR})
 
 # Doxygen target
