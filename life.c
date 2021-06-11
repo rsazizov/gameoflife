@@ -40,7 +40,7 @@ bool should_quit() {
 }
 
 int main(int argc, char **argv) {
-  bool clip = true; //is_clip(argc, argv);
+  bool clip = is_clip(argc, argv);
 
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     printf("SDL error\n");
