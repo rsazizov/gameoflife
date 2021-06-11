@@ -152,6 +152,27 @@ void test_glider_3() {
   CU_ASSERT(Board_compare(start, result));
 }
 
+/**
+ * @brief Test glider pattern (4th pattern)
+ *
+ * https://www.researchgate.net/figure/Subsequent-stages-of-the-glider-pattern-on-Conways-Game-of-Life-cellular-automaton-grid_fig1_263596638
+ */
+void test_glider_4() {
+  Board *result = Board_create(4, 4);
+
+  result->grid[2][1] = true;
+  result->grid[3][2] = true;
+  result->grid[3][3] = true;
+  result->grid[2][3] = true;
+  result->grid[1][3] = true;
+
+  Board *start = make_glider();
+
+  start = make_life_iters(start, 4, true);
+
+  CU_ASSERT(Board_compare(start, result));
+}
+
 int main() {
   if (CUE_SUCCESS != CU_initialize_registry()) {
     return CU_get_error();
@@ -168,7 +189,8 @@ int main() {
       (NULL == CU_add_test(suite, "Toad", test_toad)) ||
       (NULL == CU_add_test(suite, "Glider 1", test_glider_1)) ||
       (NULL == CU_add_test(suite, "Glider 2", test_glider_2)) ||
-      (NULL == CU_add_test(suite, "Glider 3", test_glider_3))) {
+      (NULL == CU_add_test(suite, "Glider 3", test_glider_3)) ||
+      (NULL == CU_add_test(suite, "Glider 4", test_glider_4))) {
     CU_cleanup_registry();
     return CU_get_error();
   }
