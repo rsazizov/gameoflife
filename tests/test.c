@@ -85,6 +85,13 @@ void test_toad() {
   Board_free(result);
 }
 
+/**
+ * @brief Create a board with a glider pattern
+ *
+ * @param w Width of the board
+ * @param h Height of the board
+ * @return Board of size (w, h) with a glider at (0, 0)
+ */
 Board *make_glider(size_t w, size_t h) {
   Board *glider = Board_create(w, h);
 
