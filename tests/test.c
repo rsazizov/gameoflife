@@ -1,15 +1,6 @@
 #include <CUnit/Basic.h>
 
-#include "common.h"
 #include <unistd.h>
-#include <stdbool.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sys/time.h>
-#include <errno.h>
-#include "server.h"
-#include "client.h"
-#include <sys/select.h>
 
 static int init_suite() { return 0; }
 
@@ -31,7 +22,7 @@ int main() {
     return CU_get_error();
   }
 
-  if ((NULL == CU_add_test(suite, "Client can read pid", test_dummy))) {
+  if ((NULL == CU_add_test(suite, "Dummy", test_dummy))) {
     CU_cleanup_registry();
     return CU_get_error();
   }
