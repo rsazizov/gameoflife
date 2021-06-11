@@ -1,10 +1,10 @@
-# Game of Life (Step 3)
+# Game of Life (Step 4)
 
 You have stumbled upon game of life. Here is what you can do:
 
 ## Prerequisites
 
-You'll need CMake version 3.20.
+You'll need CMake version 3.20 as well as SDL2 installed on your system.
 
 First, create a `build` directory for storing build files.
 
@@ -27,8 +27,8 @@ cmake ..
 make life
 ```
 
-This will create `life` executable which can then be run. Version 3 features both `clip` and `circular` modes.
-The mode is given as a command line argument.
+This will create `life` executable which can then be run. Version 4 features both `clip` and `circular` modes. The mode
+is given as a command line argument.
 
 ```
 ./life clip
@@ -41,6 +41,14 @@ or
 ```
 
 You'll get a usage error otherwise.
+
+Also, you will be prompted for size of the board.
+
+```
+✦❯ ./life circular
+Enter board width (in pixels): 640
+Enter board height (in pixels): 480
+```
 
 ### Docs
 
