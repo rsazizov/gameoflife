@@ -13,7 +13,9 @@
  */
 Board *make_life_iters(Board *board, size_t iters, bool clip) {
   for (size_t i = 0; i < iters; ++i) {
+    Board *tmp = board;
     board = Board_make_life(board, clip);
+    Board_free(tmp);
   }
 
   return board;
@@ -41,9 +43,12 @@ void test_blinker() {
   start->grid[1][1] = true;
   start->grid[1][2] = true;
 
-  start = Board_make_life(start, true);
+  start = make_life_iters(start, 1, true);
 
   CU_ASSERT(Board_compare(start, result));
+
+  Board_free(start);
+  Board_free(result);
 }
 
 /**
@@ -72,13 +77,16 @@ void test_toad() {
   start->grid[1][2] = true;
   start->grid[1][3] = true;
 
-  start = Board_make_life(start, true);
+  start = make_life_iters(start, 1, true);
 
   CU_ASSERT(Board_compare(start, result));
+
+  Board_free(start);
+  Board_free(result);
 }
 
-Board *make_glider() {
-  Board *glider = Board_create(4, 4);
+Board *make_glider(size_t w, size_t h) {
+  Board *glider = Board_create(w, h);
 
   glider->grid[1][0] = true;
   glider->grid[2][1] = true;
@@ -103,11 +111,14 @@ void test_glider_1() {
   result->grid[2][2] = true;
   result->grid[2][1] = true;
 
-  Board *start = make_glider();
+  Board *start = make_glider(4, 4);
 
-  start = Board_make_life(start, true);
+  start = make_life_iters(start, 1, true);
 
   CU_ASSERT(Board_compare(start, result));
+
+  Board_free(start);
+  Board_free(result);
 }
 
 /**
@@ -124,11 +135,14 @@ void test_glider_2() {
   result->grid[2][2] = true;
   result->grid[2][1] = true;
 
-  Board *start = make_glider();
+  Board *start = make_glider(4, 4);
 
   start = make_life_iters(start, 2, true);
 
   CU_ASSERT(Board_compare(start, result));
+
+  Board_free(start);
+  Board_free(result);
 }
 
 /**
@@ -145,11 +159,14 @@ void test_glider_3() {
   result->grid[3][2] = true;
   result->grid[1][3] = true;
 
-  Board *start = make_glider();
+  Board *start = make_glider(4, 4);
 
   start = make_life_iters(start, 3, true);
 
   CU_ASSERT(Board_compare(start, result));
+
+  Board_free(start);
+  Board_free(result);
 }
 
 /**
@@ -166,11 +183,34 @@ void test_glider_4() {
   result->grid[2][3] = true;
   result->grid[1][3] = true;
 
-  Board *start = make_glider();
+  Board *start = make_glider(4, 4);
 
   start = make_life_iters(start, 4, true);
 
   CU_ASSERT(Board_compare(start, result));
+
+  Board_free(start);
+  Board_free(result);
+}
+
+
+/**
+ * @brief Test glider pattern (circular)
+ *
+ * Glider must repeat after 24 iterations on a 6x6 board if we start from (0, 0)
+ *
+ * https://www.researchgate.net/figure/Subsequent-stages-of-the-glider-pattern-on-Conways-Game-of-Life-cellular-automaton-grid_fig1_263596638
+ */
+void test_glider_circular() {
+  Board *result = make_glider(6, 6);
+  Board *start = make_glider(6, 6);
+
+  start = make_life_iters(start, 24, false);
+
+  CU_ASSERT(Board_compare(start, result));
+
+  Board_free(start);
+  Board_free(result);
 }
 
 int main() {
@@ -190,7 +230,8 @@ int main() {
       (NULL == CU_add_test(suite, "Glider 1", test_glider_1)) ||
       (NULL == CU_add_test(suite, "Glider 2", test_glider_2)) ||
       (NULL == CU_add_test(suite, "Glider 3", test_glider_3)) ||
-      (NULL == CU_add_test(suite, "Glider 4", test_glider_4))) {
+      (NULL == CU_add_test(suite, "Glider 4", test_glider_4)) ||
+      (NULL == CU_add_test(suite, "Circular Glider", test_glider_circular))) {
     CU_cleanup_registry();
     return CU_get_error();
   }
