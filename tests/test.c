@@ -2,6 +2,23 @@
 
 #include "../liblife/board.h"
 
+/**
+ * @brief Simulate game of life for several iterations
+ *
+ * @param board Board to simulate
+ * @param iters Number of iterations to simulate
+ * @param clip see Board_make_life
+ *
+ * @return Board that is result of iters iterations
+ */
+Board *make_life_iters(Board *board, size_t iters, bool clip) {
+  for (size_t i = 0; i < iters; ++i) {
+    board = Board_make_life(board, clip);
+  }
+
+  return board;
+}
+
 static int init_suite() { return 0; }
 
 static int clean_suite() { return 0; }
@@ -93,6 +110,27 @@ void test_glider_1() {
   CU_ASSERT(Board_compare(start, result));
 }
 
+/**
+ * @brief Test glider pattern (2nd pattern)
+ *
+ * https://www.researchgate.net/figure/Subsequent-stages-of-the-glider-pattern-on-Conways-Game-of-Life-cellular-automaton-grid_fig1_263596638
+ */
+void test_glider_2() {
+  Board *result = Board_create(4, 4);
+
+  result->grid[0][2] = true;
+  result->grid[2][3] = true;
+  result->grid[1][3] = true;
+  result->grid[2][2] = true;
+  result->grid[2][1] = true;
+
+  Board *start = make_glider();
+
+  start = make_life_iters(start, 2, true);
+
+  CU_ASSERT(Board_compare(start, result));
+}
+
 int main() {
   if (CUE_SUCCESS != CU_initialize_registry()) {
     return CU_get_error();
@@ -107,7 +145,8 @@ int main() {
 
   if ((NULL == CU_add_test(suite, "Blinker", test_blinker)) ||
       (NULL == CU_add_test(suite, "Toad", test_toad)) ||
-      (NULL == CU_add_test(suite, "Glider 1", test_glider_1))) {
+      (NULL == CU_add_test(suite, "Glider 1", test_glider_1)) ||
+      (NULL == CU_add_test(suite, "Glider 2", test_glider_2))) {
     CU_cleanup_registry();
     return CU_get_error();
   }
