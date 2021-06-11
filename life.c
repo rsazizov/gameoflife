@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <time.h>
+#include <SDL2/SDL.h>
 #include <unistd.h>
 
 void usage_and_die() {
@@ -12,6 +12,11 @@ void usage_and_die() {
 }
 
 int main(int argc, char** argv) {
+  if (SDL_Init(SDL_INIT_VIDEO) >= 0) {
+    printf("SDL was initialized\n");
+    return 1;
+  }
+
   if (argc != 2) {
     usage_and_die();
   }

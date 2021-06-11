@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.20)
 project(gameoflife C)
 
+find_package(SDL2 REQUIRED)
+
+include_directories(${SDL2_INCLUDE_DIRS})
+
 set(CMAKE_C_STANDARD 11)
 
 set(DIST "dist.tar.gz")
@@ -11,7 +15,7 @@ add_subdirectory(liblife)
 
 add_executable(life life.c)
 
-target_link_libraries(life PUBLIC libansi liblife)
+target_link_libraries(life libansi liblife SDL2::SDL2)
 
 # Doxygen target
 
@@ -49,5 +53,4 @@ add_custom_target(dist ALL
         COMMENT "Compressing dist"
         VERBATIM)
 
-add_dependencies(dist doc)
-add_dependencies(dist life)
+add_dependencies(dist doc life)
