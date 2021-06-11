@@ -31,12 +31,20 @@ bool should_quit() {
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
       case SDL_QUIT:
-      case SDL_WINDOWEVENT_CLOSE:
-        return true;
+      case SDL_WINDOWEVENT:
+        return event.window.event == SDL_WINDOWEVENT_CLOSE;
       default:
         return false;
     }
   }
+}
+
+void read_board_size(size_t *width, size_t *height) {
+  printf("Enter board width (in pixels): ");
+  scanf("%d", width);
+
+  printf("Enter board height (in pixels): ");
+  scanf("%d", height);
 }
 
 int main(int argc, char **argv) {
@@ -47,8 +55,10 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-  size_t width = 640;
-  size_t height = 480;
+  size_t width;
+  size_t height;
+
+  read_board_size(&width, &height);
 
   Board *board = Board_create(width, height);
   Board_gen_random(board);
@@ -57,10 +67,16 @@ int main(int argc, char **argv) {
                                         width, height, 0);
   SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
+  size_t iter = 0;
   for (;;) {
     if (should_quit()) {
       break;
     }
+
+    char title[256];
+    sprintf(title, "Game of Life: Iteration = %d", iter);
+
+    SDL_SetWindowTitle(window, title);
 
     SDL_RenderClear(renderer);
 
@@ -73,6 +89,7 @@ int main(int argc, char **argv) {
     SDL_RenderPresent(renderer);
 
     SDL_Delay(10);
+    iter++;
   }
 
   Board_free(board);

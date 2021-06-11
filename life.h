@@ -15,6 +15,13 @@ void usage_and_die();
 bool is_clip(int argc, char **argv);
 
 /**
+ * @brief Prompt user for board size
+ * @param width (out) width of the board
+ * @param height (out) height of the board
+ */
+void read_board_size(size_t *width, size_t *height);
+
+/**
  * @brief Handle SDL events to see if the app should close
  * @returns whether app should close
  */
