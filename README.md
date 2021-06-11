@@ -1,4 +1,4 @@
-# Game of Life (Step 5)
+# Game of Life (Step 6)
 
 You have stumbled upon game of life. Here is what you can do:
 
@@ -28,7 +28,7 @@ cmake ..
 make life
 ```
 
-This will create `life` executable which can then be run. Version 4 features both `clip` and `circular` modes. The mode
+This will create `life` executable which can then be run. Version 6 features both `clip` and `circular` modes. The mode
 is given as a command line argument.
 
 ```
