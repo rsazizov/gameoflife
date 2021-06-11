@@ -22,5 +22,5 @@ jobs:
 
       - name: Test
         working-directory: ${{github.workspace}}/build/tests
-        run: test
+        run: ./test
 
