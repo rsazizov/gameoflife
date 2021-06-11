@@ -13,3 +13,9 @@ void usage_and_die();
  * @return true if mode = clip, false if circular
  */
 bool is_clip(int argc, char **argv);
+
+/**
+ * @brief Handle SDL events to see if the app should close
+ * @returns whether app should close
+ */
+bool should_quit();

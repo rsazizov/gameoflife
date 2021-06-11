@@ -25,6 +25,20 @@ bool is_clip(int argc, char **argv) {
   return strcmp(variant, "clip") != 0;
 }
 
+bool should_quit() {
+  SDL_Event event;
+
+  while (SDL_PollEvent(&event)) {
+    switch (event.type) {
+      case SDL_QUIT:
+      case SDL_WINDOWEVENT_CLOSE:
+        return true;
+      default:
+        return false;
+    }
+  }
+}
+
 int main(int argc, char **argv) {
   bool clip = true; //is_clip(argc, argv);
 
@@ -44,15 +58,21 @@ int main(int argc, char **argv) {
   SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
   for (;;) {
+    if (should_quit()) {
+      break;
+    }
+
     SDL_RenderClear(renderer);
+
+    UI_draw_board(renderer, board);
 
     Board *tmp = board;
     board = Board_make_life(board, clip);
     Board_free(tmp);
 
-    UI_draw_board(renderer, board);
-
     SDL_RenderPresent(renderer);
+
+    SDL_Delay(10);
   }
 
   Board_free(board);
