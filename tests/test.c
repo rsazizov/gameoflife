@@ -30,6 +30,38 @@ void test_blinker() {
   CU_ASSERT(Board_compare(start, result));
 }
 
+/**
+ * @brief Test toad
+ *
+ * https://cs.stanford.edu/people/eroberts/courses/soco/projects/2001-02/cellular-automata/oscillators/toad.gif
+ */
+void test_toad() {
+  Board *result = Board_create(4, 4);
+
+  result->grid[1][0] = true;
+  result->grid[2][0] = true;
+  result->grid[3][1] = true;
+
+  result->grid[0][2] = true;
+  result->grid[1][3] = true;
+  result->grid[2][3] = true;
+
+  Board *start = Board_create(4, 4);
+
+  start->grid[2][0] = true;
+  start->grid[2][1] = true;
+  start->grid[2][2] = true;
+
+  start->grid[1][1] = true;
+  start->grid[1][2] = true;
+  start->grid[1][3] = true;
+
+  start = Board_make_life(start, true);
+
+  CU_ASSERT(Board_compare(start, result));
+}
+
+
 int main() {
   if (CUE_SUCCESS != CU_initialize_registry()) {
     return CU_get_error();
@@ -42,7 +74,8 @@ int main() {
     return CU_get_error();
   }
 
-  if ((NULL == CU_add_test(suite, "Blinker", test_blinker))) {
+  if ((NULL == CU_add_test(suite, "Blinker", test_blinker)) ||
+      (NULL == CU_add_test(suite, "Toad", test_toad))) {
     CU_cleanup_registry();
     return CU_get_error();
   }
