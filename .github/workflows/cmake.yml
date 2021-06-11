@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: apt install cmake libsdl2-dev libcunit1 libcunit1-doc libcunit1-dev
+        run: sudo apt install cmake libsdl2-dev libcunit1 libcunit1-doc libcunit1-dev
 
       - name: Configure CMake
         run: cmake -B ${{github.workspace}}/build
