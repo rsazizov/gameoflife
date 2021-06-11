@@ -6,13 +6,13 @@ on:
 
 jobs:
   build:
-    runs-on: archlinux
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: pacman -S cmake sdl2 cunit
+        run: apk install cmake libsdl2-dev libcunit1 libcunit1-doc libcunit1-dev
 
       - name: Configure CMake
         run: cmake -B ${{github.workspace}}/build
