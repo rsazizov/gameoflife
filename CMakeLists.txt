@@ -12,6 +12,7 @@ set(DOC "doc")
 
 add_subdirectory(libui)
 add_subdirectory(liblife)
+add_subdirectory(tests)
 
 add_executable(life life.c life.h)
 
