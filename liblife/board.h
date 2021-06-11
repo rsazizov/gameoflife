@@ -68,3 +68,14 @@ int Board_count_alive_neighbours(Board *board, int i, int j, bool clip);
  *
  */
 Board *Board_make_life(Board *board, bool clip);
+
+
+/**
+ * @brief Compare two boards
+ *
+ * @param a First board to compare
+ * @param b Second board to compare
+ *
+ * @return whether board a and b are equal
+ */
+bool Board_compare(Board *a, Board *b);
