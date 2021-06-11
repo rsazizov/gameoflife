@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <SDL2/SDL.h>
-#include <unistd.h>
+#include "life.h"
 
 void usage_and_die() {
   printf("Usage: life <clip|circular>\n");
@@ -39,8 +39,8 @@ int main(int argc, char **argv) {
   Board *board = Board_create(width, height);
   Board_gen_random(board);
 
-  SDL_Window *window = SDL_CreateWindow("Game of Life", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height,
-                                        0);
+  SDL_Window *window = SDL_CreateWindow("Game of Life", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                                        width, height, 0);
   SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
   for (;;) {
