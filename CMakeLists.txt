@@ -10,12 +10,13 @@ set(CMAKE_C_STANDARD 11)
 set(DIST "dist.tar.gz")
 set(DOC "doc")
 
-add_subdirectory(libansi)
+add_subdirectory(libui)
 add_subdirectory(liblife)
 
 add_executable(life life.c)
 
-target_link_libraries(life libansi liblife SDL2::SDL2)
+target_link_libraries(life libui liblife SDL2::SDL2)
+target_include_directories(life PUBLIC ${CMAKE_SOURCE_DIR})
 
 # Doxygen target
 
